@@ -1,10 +1,4 @@
-# Analyticore Foundry Foundations Entry Program
 ## Program Structure Summary
-
-Prepared by Sainath Palla, Analyticore
-Independent training program — not affiliated with Palantir.
-
----
 
 | Step | Title | Foundry Tool | Dataset Domain |
 |---|---|---|---|
