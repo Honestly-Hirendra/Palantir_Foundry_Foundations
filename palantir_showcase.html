@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palantir Foundry — Showcase Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0f;
+    --paper: #f5f2eb;
+    --accent: #1a1aff;
+    --accent2: #ff3c00;
+    --muted: #6b6b7a;
+    --rule: #d0cdc4;
+    --card: #ffffff;
+    --tag-bg: #e8e4ff;
+    --tag-text: #1a1aff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 47px, var(--rule) 47px, var(--rule) 48px
+    );
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-pill {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    padding: 0.5rem 1.1rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+  }
+
+  .status-pill {
+    background: var(--accent2);
+    color: white;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    padding: 0.45rem 1rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  .hero-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    padding: 2rem 0;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 8rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+
+  .hero-name span {
+    color: var(--accent);
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+  }
+
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 600px;
+    margin-top: 1.5rem;
+  }
+
+  .hero-bottom {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+
+  .stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 50px;
+    background: var(--rule);
+  }
+
+  /* MAIN CONTENT */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* COURSE CARDS */
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-bottom: 6rem;
+    background: var(--ink);
+    border: 2px solid var(--ink);
+  }
+
+  .course-card {
+    background: var(--card);
+    padding: 2rem;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .course-card:hover {
+    background: var(--tag-bg);
+  }
+
+  .course-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--rule);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .course-tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    margin-bottom: 0.75rem;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .course-card:hover .course-tag {
+    background: var(--accent);
+    color: white;
+  }
+
+  .course-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .course-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .course-built {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent2);
+    letter-spacing: 0.08em;
+  }
+
+  .course-built::before {
+    content: '▸ Built: ';
+    color: var(--muted);
+  }
+
+  /* SKILLS STRIP */
+  .skills-strip {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2rem 3rem;
+    margin-bottom: 6rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .skills-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #888;
+    white-space: nowrap;
+  }
+
+  .skill-chip {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--paper);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .skill-chip:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* SCRIPT SECTION */
+  .script-section {
+    margin-bottom: 6rem;
+  }
+
+  .script-block {
+    margin-bottom: 2.5rem;
+    border: 2px solid var(--ink);
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .script-block-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.85rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .script-icon {
+    font-size: 1rem;
+  }
+
+  .script-block-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .script-duration {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: #888;
+    letter-spacing: 0.1em;
+  }
+
+  .script-body {
+    padding: 1.75rem 2rem;
+    background: white;
+  }
+
+  .script-line {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--ink);
+    font-style: italic;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .script-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--paper);
+    border-radius: 4px;
+  }
+
+  .script-note strong {
+    color: var(--accent2);
+    font-weight: 500;
+  }
+
+  /* STANDOUT SECTION */
+  .standout-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .standout-card {
+    border: 2px solid var(--ink);
+    padding: 1.75rem;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .standout-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .standout-rank {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--rule);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .standout-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--accent);
+  }
+
+  .standout-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .footer-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .footer-sub {
+    color: #888;
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .checklist li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    font-size: 0.82rem;
+    color: #ccc;
+    line-height: 1.5;
+  }
+
+  .check {
+    color: var(--accent2);
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { padding: 2rem; }
+    .main { padding: 3rem 1.5rem; }
+    .courses-grid { grid-template-columns: 1fr; }
+    .standout-grid { grid-template-columns: 1fr; }
+    .footer { grid-template-columns: 1fr; padding: 2rem; }
+    .hero-name { font-size: 3rem; }
+  }
+
+  /* PRINT */
+  @media print {
+    .hero { min-height: auto; }
+    .course-card:hover { background: var(--card); }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-center, .hero-bottom {
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-center { animation-delay: 0.1s; }
+  .hero-bottom { animation-delay: 0.25s; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-top">
+    <span class="logo-pill">Palantir Foundry · Certified Learner</span>
+    <span class="status-pill">● Available for Assignment</span>
+  </div>
+
+  <div class="hero-center">
+    <p class="eyebrow">Full-Stack Foundry Training — 6 Courses Completed</p>
+    <h1 class="hero-name">
+      Foundry<br><span>Platform</span><br>Portfolio
+    </h1>
+    <p class="hero-sub">
+      From raw data pipelines to AI-powered Knowledge Graph applications — a complete journey through the Palantir Foundry stack.
+    </p>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="stat-block">
+      <span class="stat-num">6</span>
+      <span class="stat-label">Courses Completed</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-block">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Apps Built</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-block">
+      <span class="stat-num">1</span>
+      <span class="stat-label">End-to-End AI Workflow</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-block">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">Curiosity</span>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- COURSES -->
+  <div class="section-header">
+    <span class="section-num">01 —</span>
+    <h2 class="section-title">Courses Completed</h2>
+  </div>
+
+  <div class="courses-grid">
+
+    <div class="course-card">
+      <div class="course-number">01</div>
+      <span class="course-tag">Data Analysis</span>
+      <h3 class="course-title">Contour — Data Analysis & Visualization</h3>
+      <p class="course-desc">First course in the track. Mastered Contour for data cleaning, transformation, and visualization using linear dependent logic blocks organized into paths. Built dashboards and saved analysis results as datasets for downstream Foundry tools. Understood when to use Contour vs Quiver, Pipeline Builder, or Code Repositories.</p>
+      <p class="course-built">Data analysis dashboards with multi-path transformation logic</p>
+    </div>
+
+    <div class="course-card">
+      <div class="course-number">02</div>
+      <span class="course-tag">Data Engineering</span>
+      <h3 class="course-title">Pipeline Builder — Building Data Pipelines</h3>
+      <p class="course-desc">Built a fully functional end-to-end data pipeline using Foundry's low-code/no-code Pipeline Builder. Transformed raw data into clean, structured, Ontology-ready outputs using pre-built Spark modules. Covered branching, builds, schedules, and data validation — all without writing code.</p>
+      <p class="course-built">End-to-end data pipeline: raw → transformed → Ontology-ready</p>
+    </div>
+
+    <div class="course-card">
+      <div class="course-number">03</div>
+      <span class="course-tag">Code Engineering</span>
+      <h3 class="course-title">Code Repositories — PySpark Transforms</h3>
+      <p class="course-desc">Used Foundry's browser-based IDE to write and collaborate on production-ready PySpark code. Performed casting, filtering, joins, and aggregations. Worked collaboratively using Branching, and explored integration with Data Lineage and Job Tracker for governance and auditability at scale.</p>
+      <p class="course-built">PySpark transforms with joins, aggregations, branching & governance</p>
+    </div>
+
+    <div class="course-card">
+      <div class="course-number">04</div>
+      <span class="course-tag">Ontology Design</span>
+      <h3 class="course-title">Deep Dive: Creating Your First Ontology</h3>
+      <p class="course-desc">Went hands-on with Foundry's core semantic layer — defining object types, relationships, and actions. Understood how the Ontology encodes both the nouns AND verbs of an organization: data vocabulary plus business logic and kinetics. Explored how AIP uses the Ontology as clean input and as an operational output destination.</p>
+      <p class="course-built">Custom Ontology with object types, relationships, actions & AI hooks</p>
+    </div>
+
+    <div class="course-card">
+      <div class="course-number">05</div>
+      <span class="course-tag">App Development</span>
+      <h3 class="course-title">Deep Dive: Building Your First Application (Workshop)</h3>
+      <p class="course-desc">Built the Shipment Operations Center from scratch using Workshop — Foundry's no-code application builder on top of the Ontology. Created modules, configured and connected widgets via variables, managed layouts with sections, applied conditional formatting, and defined both simple point-and-click and complex function-based actions that write decisions back into the Ontology.</p>
+      <p class="course-built">Shipment Operations Center — full operational Workshop application</p>
+    </div>
+
+    <div class="course-card">
+      <div class="course-number">06</div>
+      <span class="course-tag">AI Workflow · Capstone</span>
+      <h3 class="course-title">AIP Speedrun — End-to-End AI Workflow</h3>
+      <p class="course-desc">Capstone course. Built a complete AI-powered pipeline: PDFs → data transformation → LLM batch entity extraction → Ontology objects (Chunks + Entities) → Knowledge Graph → AIP Agent configured for hallucination-free Q&A → Workshop app surfacing graph context per answer. Experienced the full Foundry + AIP stack end-to-end.</p>
+      <p class="course-built">Knowledge Graph + AIP Logic Q&A app (TB Research Tool) in Workshop</p>
+    </div>
+
+  </div>
+
+  <!-- SKILLS -->
+  <div class="skills-strip">
+    <span class="skills-label">Tools &amp; Skills Mastered →</span>
+    <span class="skill-chip">AIP Logic</span>
+    <span class="skill-chip">Knowledge Graph</span>
+    <span class="skill-chip">Ontology Manager</span>
+    <span class="skill-chip">Workshop</span>
+    <span class="skill-chip">Pipeline Builder</span>
+    <span class="skill-chip">Code Repositories</span>
+    <span class="skill-chip">Contour</span>
+    <span class="skill-chip">PySpark</span>
+    <span class="skill-chip">Object Explorer</span>
+    <span class="skill-chip">Data Lineage</span>
+    <span class="skill-chip">Quiver</span>
+    <span class="skill-chip">LLM Entity Extraction</span>
+  </div>
+
+  <!-- SCRIPT -->
+  <div class="section-header">
+    <span class="section-num">02 —</span>
+    <h2 class="section-title">Showcase Script</h2>
+  </div>
+
+  <div class="script-section">
+
+    <div class="script-block">
+      <div class="script-block-header">
+        <span class="script-icon">🎯</span>
+        <span class="script-block-label">Opening Hook</span>
+        <span class="script-duration">~30 sec</span>
+      </div>
+      <div class="script-body">
+        <p class="script-line">"I recently completed six Palantir Foundry courses — and what I want to emphasize is that I didn't just study the platform, I actually built on it. I built data pipelines, wrote PySpark transforms, designed an Ontology, created a production-grade Workshop application, and topped it off by shipping an AI-powered Knowledge Graph app. Today I'd like to walk you through what that journey looked like and why I think it maps directly to what you're trying to solve."</p>
+        <p class="script-note"><strong>TIP:</strong> Pause after "I actually built on it." Let that land. Eye contact here is crucial.</p>
+      </div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-block-header">
+        <span class="script-icon">🔧</span>
+        <span class="script-block-label">Courses 1–3 · The Data Layer — Contour → Pipeline Builder → Code Repositories</span>
+        <span class="script-duration">~75 sec</span>
+      </div>
+      <div class="script-body">
+        <p class="script-line">"My first course was Contour — Foundry's data analysis and visualization tool. It organizes analysis into linear dependent paths of logic blocks, which keeps things interpretable and auditable. From there I moved to Pipeline Builder, where I built a fully functional end-to-end data pipeline with no code at all — branching, scheduling, validation, all handled through a visual interface backed by Spark. Then I went deeper with Code Repositories, writing actual PySpark — joins, aggregations, casting, filtering — in Foundry's browser-based IDE, with collaborative branching and Data Lineage integration for full governance. I now understand all three ways data gets transformed in Foundry: visual analysis in Contour, low-code pipelines in Pipeline Builder, and production-grade code in Code Repositories."</p>
+        <p class="script-note"><strong>TIP:</strong> Draw three boxes left to right as you speak: Contour → Pipeline Builder → Code Repos. Then say: "Each one goes deeper — ad-hoc analysis, to no-code pipelines, to full PySpark." That progression signals architectural maturity, not just tool familiarity.</p>
+      </div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-block-header">
+        <span class="script-icon">🗂️</span>
+        <span class="script-block-label">Course 4 · The Semantic Layer — Ontology Deep Dive</span>
+        <span class="script-duration">~60 sec</span>
+      </div>
+      <div class="script-body">
+        <p class="script-line">"Once the data is clean, Foundry makes it meaningful through the Ontology — and this is where things get interesting. The Ontology isn't just a data catalog or a semantic label. It encodes the nouns AND the verbs of your organization. The nouns are your object types — Aircraft, Shipment, Patient — and the verbs are actions that enforce business rules and write decisions back into the platform. I defined my own object types, relationships between them, and actions — and I learned how this single layer powers every downstream tool: Workshop, AIP, Quiver, and the Ontology SDK."</p>
+        <p class="script-note"><strong>TIP:</strong> Say "nouns AND verbs" clearly and slowly. This is the insight that separates people who really understand Foundry from those who just used it.</p>
+      </div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-block-header">
+        <span class="script-icon">📦</span>
+        <span class="script-block-label">Course 5 · The Application Layer — Workshop + Shipment Ops Center</span>
+        <span class="script-duration">~60 sec</span>
+      </div>
+      <div class="script-body">
+        <p class="script-line">"With a solid Ontology in place, I built a real operational application in Workshop — the Shipment Operations Center. This isn't a prototype — it's an app that shipment managers can actually use to understand what's happening across their supply chain and take action on it. I built modules from scratch, configured and connected widgets through variables, managed layouts with sections, applied conditional formatting, and defined actions — both simple point-and-click and complex function-based actions. Crucially, every action a user takes is written back into the Ontology, so all downstream workflows and users benefit from that decision."</p>
+        <p class="script-note"><strong>TIP:</strong> If you have a screen recording or screenshot of the app, show it here. Visuals convert abstract descriptions into concrete proof.</p>
+      </div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-block-header">
+        <span class="script-icon">🤖</span>
+        <span class="script-block-label">Course 6 · Capstone — AIP Logic + Knowledge Graph App</span>
+        <span class="script-duration">~60 sec</span>
+      </div>
+      <div class="script-body">
+        <p class="script-line">"The capstone of my training was building an end-to-end AI workflow using AIP Logic. Starting from a set of PDFs, I built a transformation pipeline that chunked the documents, used an LLM to extract the most important entities from each chunk in batch, and loaded those chunks and entities into the Ontology as objects. This created a Knowledge Graph — a structured semantic map of the research domain. I then configured an AIP Agent that uses this graph to answer natural language questions reliably, grounded in trusted data — no hallucinations, because every answer traces back to a real source in the Knowledge Graph. Finally, I surfaced the whole thing in a Workshop app so any user can query the knowledge base and see exactly which nodes of the graph were used to formulate the answer."</p>
+        <p class="script-note"><strong>TIP:</strong> This is your strongest card. Slow down here. Say "no hallucinations, because every answer traces back to a real source." That phrase will resonate with anyone who's deployed LLMs in enterprise settings.</p>
+      </div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-block-header">
+        <span class="script-icon">🔗</span>
+        <span class="script-block-label">The Architecture Summary — The Closing Synthesis</span>
+        <span class="script-duration">~30 sec</span>
+      </div>
+      <div class="script-body">
+        <p class="script-line">"What I want you to take away is that I don't just know individual Foundry tools — I understand how they compose. Data moves from raw sources through Pipeline Builder and Code Repositories, gets shaped by Contour, becomes meaningful through the Ontology, powers operational applications in Workshop, and serves as the trusted foundation for AI through AIP. Each layer depends on the one below it. I can reason about any point in that stack, and I can communicate across it — between data engineers, ontology designers, app builders, and AI teams."</p>
+        <p class="script-note"><strong>TIP:</strong> Draw the stack as you say it. Literal stack — five layers. This is the moment you look like an architect, not a student.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STAND OUT -->
+  <div class="section-header">
+    <span class="section-num">03 —</span>
+    <h2 class="section-title">How to Stand Out</h2>
+  </div>
+
+  <div class="standout-grid">
+
+    <div class="standout-card">
+      <div class="standout-rank">01</div>
+      <p class="standout-title">Draw the Stack Live</p>
+      <p class="standout-desc">Most candidates talk about Foundry. You should draw it — a five-layer diagram (Raw Data → Pipelines → Ontology → Workshop → AIP) sketched in real time shows systems thinking, not memorization. No one forgets the person who drew the architecture.</p>
+    </div>
+
+    <div class="standout-card">
+      <div class="standout-rank">02</div>
+      <p class="standout-title">Own the Ontology Insight</p>
+      <p class="standout-desc">Drop this line naturally: "The Ontology isn't just a semantic layer — it's also where logic and kinetics live. It's the nouns AND the verbs." Most candidates who've done the course miss this nuance. Landing it shows depth of understanding, not surface familiarity.</p>
+    </div>
+
+    <div class="standout-card">
+      <div class="standout-rank">03</div>
+      <p class="standout-title">Lead With the AI App</p>
+      <p class="standout-desc">The Knowledge Graph + AIP Logic app is your peak achievement. Describe the architecture in detail: PDF → chunk → LLM batch extraction → Ontology objects → Knowledge Graph → AIP Agent → Workshop UI. Anyone familiar with RAG pipelines will recognize this as production-grade design.</p>
+    </div>
+
+    <div class="standout-card">
+      <div class="standout-rank">04</div>
+      <p class="standout-title">Show a Screen Recording</p>
+      <p class="standout-desc">Record a 90-second demo of the Shipment Ops Center or the TB Q&A app in action. Showing a real working interface shifts you from "someone who did a course" to "someone who built something." This is the single highest-ROI thing you can prepare.</p>
+    </div>
+
+    <div class="standout-card">
+      <div class="standout-rank">05</div>
+      <p class="standout-title">Bridge to Their Domain</p>
+      <p class="standout-desc">Before the interview, research what the organization does. Then say: "The same Ontology + AIP pattern I used for Tuberculosis research — I can immediately see how that applies to [their domain]." Contextualizing your work to their problem is the fastest way to be remembered.</p>
+    </div>
+
+    <div class="standout-card">
+      <div class="standout-rank">06</div>
+      <p class="standout-title">Speak the Trade-offs</p>
+      <p class="standout-desc">When asked about tools, don't just list them. Say: "Contour is ideal for ad-hoc analysis and dashboards, but I'd choose Code Repositories for high-scale pipelines needing governance and incremental compute." Knowing WHEN to use each tool signals real practitioner judgment, not just course completion.</p>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <h2 class="footer-title">Ready to<br>build on<br>Day One.</h2>
+    <p class="footer-sub">Six courses. Three applications. One complete platform. This isn't a resume line — it's a foundation you can build on immediately.</p>
+  </div>
+  <div>
+    <p style="font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:#888; margin-bottom:1.25rem;">Pre-Interview Checklist</p>
+    <ul class="checklist">
+      <li><span class="check">✓</span> Record a 90-second screen demo of the Workshop app or AIP Q&A tool</li>
+      <li><span class="check">✓</span> Prepare the 5-layer stack diagram on paper — practice drawing it in 30 seconds</li>
+      <li><span class="check">✓</span> Research the organization's domain — prepare one sentence bridging your AIP app to their use case</li>
+      <li><span class="check">✓</span> Practice the "nouns AND verbs" Ontology explanation until it sounds natural</li>
+      <li><span class="check">✓</span> Be ready to compare tools: Contour vs Code Repos vs Pipeline Builder — know when to use each</li>
+      <li><span class="check">✓</span> Print or share this portfolio as a leave-behind or email attachment</li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
